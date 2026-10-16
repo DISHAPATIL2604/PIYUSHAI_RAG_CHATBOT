@@ -1,0 +1,3 @@
+# Only needed for JavaScript-rendered pages (ENABLE_PLAYWRIGHT=true)
+# After installing run:  playwright install chromium
+playwright>=1.44

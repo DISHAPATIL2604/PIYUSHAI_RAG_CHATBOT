@@ -1,0 +1,31 @@
+{
+  "_note": "SAMPLE DATA - NOT AN OFFICIAL PIYUSHAI COURSE OR VIDEO. For automated tests and offline demos only.",
+  "courses": [
+    {"course_id": "sample-course-gate-da-ml", "title": "[SAMPLE] GATE DA Machine Learning Course",
+     "url": "https://example.invalid/sample/courses/gate-da-ml",
+     "description": "SAMPLE DATA - NOT AN OFFICIAL PIYUSHAI COURSE OR VIDEO. Covers linear regression, logistic regression, decision trees, SVM, PCA and clustering for GATE Data Science and AI.",
+     "price": null, "enrollment_url": null, "exam": "GATE DA", "subjects": ["Machine Learning"],
+     "topics": ["Linear Regression", "Logistic Regression", "Decision Trees", "PCA", "Clustering"],
+     "source_url": "https://example.invalid/sample", "content_hash": "sample-h1", "indexed_at": "2026-01-01T00:00:00+00:00"},
+    {"course_id": "sample-course-gate-da-la", "title": "[SAMPLE] GATE DA Linear Algebra Course",
+     "url": "https://example.invalid/sample/courses/gate-da-linear-algebra",
+     "description": "SAMPLE DATA - NOT AN OFFICIAL PIYUSHAI COURSE OR VIDEO. Matrices, eigenvalues, eigenvectors, vector spaces and SVD.",
+     "price": null, "enrollment_url": null, "exam": "GATE DA", "subjects": ["Linear Algebra"],
+     "topics": ["Matrices", "Eigenvalues and Eigenvectors", "Singular Value Decomposition"],
+     "source_url": "https://example.invalid/sample", "content_hash": "sample-h2", "indexed_at": "2026-01-01T00:00:00+00:00"}
+  ],
+  "videos": [
+    {"video_id": "SAMPLEvid01", "title": "[SAMPLE] Linear Regression Explained for GATE DA",
+     "url": "https://example.invalid/sample/watch?v=SAMPLEvid01",
+     "description": "SAMPLE DATA - NOT AN OFFICIAL PIYUSHAI COURSE OR VIDEO. Least squares, cost function and gradient descent for linear regression.",
+     "published_at": "2026-01-05T00:00:00Z", "playlist_ids": ["SAMPLEpl1"], "playlist_titles": ["[SAMPLE] Machine Learning"],
+     "subjects": ["Machine Learning"], "topics": ["Linear Regression"], "has_transcript": false, "source": "sample",
+     "content_hash": "sample-v1", "indexed_at": "2026-01-01T00:00:00+00:00"},
+    {"video_id": "SAMPLEvid02", "title": "[SAMPLE] Eigenvalues and Eigenvectors Made Easy",
+     "url": "https://example.invalid/sample/watch?v=SAMPLEvid02",
+     "description": "SAMPLE DATA - NOT AN OFFICIAL PIYUSHAI COURSE OR VIDEO. How to compute eigenvalues and eigenvectors of a matrix.",
+     "published_at": "2026-01-10T00:00:00Z", "playlist_ids": ["SAMPLEpl2"], "playlist_titles": ["[SAMPLE] Linear Algebra"],
+     "subjects": ["Linear Algebra"], "topics": ["Eigenvalues and Eigenvectors"], "has_transcript": false, "source": "sample",
+     "content_hash": "sample-v2", "indexed_at": "2026-01-01T00:00:00+00:00"}
+  ]
+}

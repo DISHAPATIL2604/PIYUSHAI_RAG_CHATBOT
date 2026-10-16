@@ -1,0 +1,70 @@
+{
+  "courses": ["GATE DA"],
+  "subjects": [
+    {"name": "Probability and Statistics", "aliases": ["probability", "statistics", "statistical"],
+     "topics": [
+       {"name": "Conditional Probability", "aliases": ["conditional probability"]},
+       {"name": "Bayes Theorem", "aliases": ["bayes theorem", "bayes' theorem", "bayes rule"]},
+       {"name": "Random Variables", "aliases": ["random variable", "random variables"]},
+       {"name": "Probability Distributions", "aliases": ["probability distribution", "normal distribution", "binomial distribution", "poisson distribution"]},
+       {"name": "Hypothesis Testing", "aliases": ["hypothesis test", "hypothesis testing", "p-value", "t-test"]},
+       {"name": "Central Limit Theorem", "aliases": ["central limit theorem", "clt"]}
+     ]},
+    {"name": "Linear Algebra", "aliases": ["linear algebra"],
+     "topics": [
+       {"name": "Matrices", "aliases": ["matrix", "matrices"]},
+       {"name": "Eigenvalues and Eigenvectors", "aliases": ["eigenvalue", "eigenvalues", "eigenvector", "eigenvectors"]},
+       {"name": "Vector Spaces", "aliases": ["vector space", "vector spaces", "basis", "rank of a matrix"]},
+       {"name": "Singular Value Decomposition", "aliases": ["singular value decomposition", "svd"]},
+       {"name": "Systems of Linear Equations", "aliases": ["system of linear equations", "systems of linear equations", "gaussian elimination"]}
+     ]},
+    {"name": "Calculus and Optimization", "aliases": ["calculus", "optimization", "optimisation"],
+     "topics": [
+       {"name": "Derivatives", "aliases": ["derivative", "derivatives", "partial derivative"]},
+       {"name": "Gradient Descent", "aliases": ["gradient descent"]},
+       {"name": "Convex Optimization", "aliases": ["convex optimization", "convex function", "convexity"]},
+       {"name": "Lagrange Multipliers", "aliases": ["lagrange multiplier", "lagrange multipliers"]}
+     ]},
+    {"name": "Python Programming", "aliases": ["python", "programming in python"],
+     "topics": [
+       {"name": "NumPy and Pandas", "aliases": ["numpy", "pandas"]},
+       {"name": "Functions and Recursion", "aliases": ["recursion", "functions in python"]}
+     ]},
+    {"name": "Data Structures and Algorithms", "aliases": ["data structures", "algorithms", "dsa"],
+     "topics": [
+       {"name": "Sorting", "aliases": ["sorting", "merge sort", "quick sort", "quicksort"]},
+       {"name": "Searching", "aliases": ["binary search", "linear search"]},
+       {"name": "Graph Algorithms", "aliases": ["graph algorithm", "graph algorithms", "bfs", "dfs", "dijkstra"]},
+       {"name": "Dynamic Programming", "aliases": ["dynamic programming"]},
+       {"name": "Trees", "aliases": ["binary tree", "binary search tree", "bst", "heap"]},
+       {"name": "Hashing", "aliases": ["hashing", "hash table"]},
+       {"name": "Time Complexity", "aliases": ["time complexity", "big o", "asymptotic"]}
+     ]},
+    {"name": "Database Management and Warehousing", "aliases": ["database", "databases", "dbms", "data warehousing", "data warehouse"],
+     "topics": [
+       {"name": "SQL", "aliases": ["sql", "sql queries"]},
+       {"name": "Normalization", "aliases": ["normalization", "normal forms", "bcnf"]},
+       {"name": "ER Model", "aliases": ["er model", "er diagram", "entity relationship"]},
+       {"name": "Transactions", "aliases": ["transaction", "transactions", "acid"]},
+       {"name": "Data Warehousing", "aliases": ["olap", "star schema", "data warehouse"]}
+     ]},
+    {"name": "Machine Learning", "aliases": ["machine learning", "ml"],
+     "topics": [
+       {"name": "Linear Regression", "aliases": ["linear regression", "least squares", "ordinary least squares"]},
+       {"name": "Logistic Regression", "aliases": ["logistic regression"]},
+       {"name": "Decision Trees", "aliases": ["decision tree", "decision trees", "random forest"]},
+       {"name": "Support Vector Machines", "aliases": ["svm", "support vector machine", "support vector machines"]},
+       {"name": "K-Nearest Neighbors", "aliases": ["knn", "k-nearest neighbors", "k nearest neighbors"]},
+       {"name": "Neural Networks", "aliases": ["neural network", "neural networks", "perceptron", "backpropagation"]},
+       {"name": "PCA", "aliases": ["pca", "principal component analysis"]},
+       {"name": "Clustering", "aliases": ["clustering", "k-means", "kmeans", "hierarchical clustering"]},
+       {"name": "Bias-Variance Tradeoff", "aliases": ["bias-variance", "bias variance", "overfitting", "underfitting"]}
+     ]},
+    {"name": "Artificial Intelligence", "aliases": ["artificial intelligence", "ai"],
+     "topics": [
+       {"name": "Search Algorithms", "aliases": ["a* search", "uninformed search", "informed search", "minimax", "alpha-beta"]},
+       {"name": "Logic", "aliases": ["propositional logic", "first-order logic", "predicate logic"]},
+       {"name": "Reasoning under Uncertainty", "aliases": ["bayesian network", "bayesian networks", "markov", "hidden markov", "reasoning under uncertainty"]}
+     ]}
+  ]
+}
