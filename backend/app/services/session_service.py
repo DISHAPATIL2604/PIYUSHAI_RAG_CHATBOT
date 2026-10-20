@@ -11,7 +11,7 @@ from datetime import datetime, timezone
 
 class SessionStore(ABC):
     @abstractmethod
-    def append(self, session_id: str, role: str, content: str, answer_mode: str | None = None) -> None: ...
+    def append(self, session_id: str, role: str, content: str, answer_mode: str | None = None, **kwargs) -> None: ...
 
     @abstractmethod
     def history(self, session_id: str) -> list[dict] | None:
@@ -37,12 +37,18 @@ class InMemorySessionStore(SessionStore):
         while len(self._data) > self.max_sessions:
             del self._data[min(self._data, key=lambda s: self._data[s]["touched"])]
 
-    def append(self, session_id, role, content, answer_mode=None):
+    def append(self, session_id, role, content, answer_mode=None, **kwargs):
         with self._lock:
             self._evict()
             s = self._data.setdefault(session_id, {"messages": [], "touched": self._clock()})
-            s["messages"].append({"role": role, "content": content, "answer_mode": answer_mode,
-                                  "timestamp": datetime.now(timezone.utc).isoformat()})
+            msg = {
+                "role": role,
+                "content": content,
+                "answer_mode": answer_mode,
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+            }
+            msg.update(kwargs)
+            s["messages"].append(msg)
             del s["messages"][: -self.max_messages]
             s["touched"] = self._clock()
             self._evict()

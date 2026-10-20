@@ -33,8 +33,10 @@ class SentenceTransformerEmbeddingProvider(EmbeddingProvider):
                 try:
                     from sentence_transformers import SentenceTransformer
 
-                    log.info("Loading embedding model %s (first run downloads it)...", self.model_name)
-                    self._model = SentenceTransformer(self.model_name)
+                    try:
+                        self._model = SentenceTransformer(self.model_name, local_files_only=True)
+                    except Exception:
+                        self._model = SentenceTransformer(self.model_name)
                 except ImportError as e:
                     raise AppError(503, "embedding_unavailable", "sentence-transformers is not installed. Run: pip install -r requirements.txt") from e
                 except Exception as e:  # network / model-name problems

@@ -43,11 +43,29 @@ class Recommendation(BaseModel):
     is_sample: bool = False
 
 
+class ResourceRecommendation(BaseModel):
+    title: str
+    url: str
+    kind: str = "webpage"  # "webpage", "article", or "video"
+    reason: str | None = None
+    is_sample: bool = False
+
+
+class CourseRecommendation(BaseModel):
+    id: str
+    title: str
+    url: str
+    reason: str
+    is_sample: bool = False
+
+
 class ChatResponse(BaseModel):
     session_id: str
     answer: str
     answer_mode: Literal["grounded", "general_knowledge", "not_found"]
     sources: list[SourceItem] = Field(default_factory=list)
+    related_resource: ResourceRecommendation | None = None
+    recommended_course: CourseRecommendation | None = None
     course_recommendation: Recommendation | None = None
     youtube_recommendation: Recommendation | None = None
     suggested_follow_up_questions: list[str] = Field(default_factory=list)
@@ -58,8 +76,43 @@ class SessionMessage(BaseModel):
     content: str
     timestamp: str
     answer_mode: str | None = None
+    related_resource_title: str | None = None
+    related_resource_url: str | None = None
+    recommended_course_id: str | None = None
+    recommended_course_name: str | None = None
+    recommended_course_url: str | None = None
 
 
 class SessionHistory(BaseModel):
     session_id: str
     messages: list[SessionMessage]
+
+
+class ChatSessionSummary(BaseModel):
+    chat_id: str
+    title: str
+    selected_course_id: str | None = None
+    selected_course_name: str | None = None
+    created_at: str
+    updated_at: str
+
+
+class ChatMessageRecord(BaseModel):
+    message_id: str
+    role: Literal["user", "assistant"]
+    content: str
+    timestamp: str
+    related_resource_title: str | None = None
+    related_resource_url: str | None = None
+    recommended_course_id: str | None = None
+    recommended_course_name: str | None = None
+    recommended_course_url: str | None = None
+
+
+class UserProfileData(BaseModel):
+    uid: str
+    email: str | None = None
+    display_name: str | None = None
+    created_at: str
+    updated_at: str
+    preferences: dict = Field(default_factory=dict)

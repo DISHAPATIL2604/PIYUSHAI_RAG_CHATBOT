@@ -202,3 +202,31 @@ def test_chat_requires_auth_when_configured(build):
     # Valid bearer token format -> 200
     r = client.post("/api/v1/chat", json={"message": "hello"}, headers={"Authorization": "Bearer mock-test-token"})
     assert r.status_code == 200
+
+
+def test_related_resource_and_course_recommendations(build):
+    c = build(allow_sample_data=True)
+    c.catalog.load_sample(SAMPLE)
+    index_chunk(c, "https://piyushai.com/courses/gate-da-linear-algebra-course/", "GATE DA Linear Algebra", LR_TEXT, ["Linear Algebra"])
+    client = TestClient(create_app(c))
+
+    r = client.post("/api/v1/chat", json={
+        "message": "Explain eigenvalues and eigenvectors",
+        "selected_course": "GATE DA",
+        "selected_subject": "Linear Algebra",
+        "selected_topic": "Eigenvalues and Eigenvectors"
+    }).json()
+
+    assert "answer" in r
+    assert "session_id" in r
+    # Related resource should be present from sample or grounded chunks
+    assert r.get("related_resource") is not None
+    assert "title" in r["related_resource"]
+    assert "url" in r["related_resource"]
+    assert "kind" in r["related_resource"]
+
+    # Recommended course should be present
+    assert r.get("recommended_course") is not None
+    assert "title" in r["recommended_course"]
+    assert "url" in r["recommended_course"]
+

@@ -5,7 +5,7 @@ import uuid
 from app.core.config import Settings
 from app.core.errors import AppError
 from app.prompts import system_prompt as sp
-from app.schemas.chat import ChatRequest, ChatResponse, SourceItem
+from app.schemas.chat import ChatRequest, ChatResponse, CourseRecommendation, ResourceRecommendation, SourceItem
 from app.services.catalog_service import CatalogService
 from app.services.generation_service import GenerationService, sanitize_urls
 from app.services.recommendation_service import RecommendationService
@@ -107,9 +107,58 @@ class ChatService:
                 snippet = sanitize_urls(c.text[:200], allowed)[0]
                 sources.append(SourceItem(title=c.title, url=c.url, content_type=c.content_type, snippet=snippet))
 
+        recommended_course = None
+        if course_rec:
+            recommended_course = CourseRecommendation(
+                id=course_rec.id,
+                title=course_rec.title,
+                url=course_rec.url,
+                reason=course_rec.reason,
+                is_sample=course_rec.is_sample,
+            )
+
+        related_resource = None
+        if video_rec:
+            related_resource = ResourceRecommendation(
+                title=video_rec.title,
+                url=video_rec.url,
+                kind="video",
+                reason=video_rec.reason,
+                is_sample=video_rec.is_sample,
+            )
+        elif sources:
+            top_src = sources[0]
+            kind = "video" if "youtube" in top_src.url.lower() else "article" if any(k in top_src.url.lower() for k in ("post", "article", "syllabus", "questions", "-da")) else "webpage"
+            related_resource = ResourceRecommendation(
+                title=top_src.title or "PiyushAI Verified Learning Resource",
+                url=top_src.url,
+                kind=kind,
+                reason=f"Covers key concepts relevant to your question",
+                is_sample=False,
+            )
+
         self.sessions.append(sid, "user", req.message)
-        self.sessions.append(sid, "assistant", answer, answer_mode=mode)
+        self.sessions.append(
+            sid,
+            "assistant",
+            answer,
+            answer_mode=mode,
+            related_resource_title=related_resource.title if related_resource else None,
+            related_resource_url=related_resource.url if related_resource else None,
+            recommended_course_id=recommended_course.id if recommended_course else None,
+            recommended_course_name=recommended_course.title if recommended_course else None,
+            recommended_course_url=recommended_course.url if recommended_course else None,
+        )
         if len(follow_ups) < 2:
             follow_ups = (follow_ups + self._fallback_follow_ups(req))[:4]
-        return ChatResponse(session_id=sid, answer=answer, answer_mode=mode, sources=sources, course_recommendation=course_rec,
-                            youtube_recommendation=video_rec, suggested_follow_up_questions=follow_ups[:4])
+        return ChatResponse(
+            session_id=sid,
+            answer=answer,
+            answer_mode=mode,
+            sources=sources,
+            related_resource=related_resource,
+            recommended_course=recommended_course,
+            course_recommendation=course_rec,
+            youtube_recommendation=video_rec,
+            suggested_follow_up_questions=follow_ups[:4],
+        )
